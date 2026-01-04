@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIT ZONE - Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{
+ background:#000 url('https://images.unsplash.com/photo-1558611848-73f7eb4001a1') center/cover fixed;
+ color:white;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ height:100vh;
+}
+.overlay{
+ background:rgba(0,0,0,0.7);
+ position:fixed;
+ inset:0;
+ box-shadow:0 0 70px rgba(255,0,0,0.6) inset;
+}
+.container{
+ position:relative;
+ z-index:10;
+ max-width:420px;
+ width:90%;
+ background:rgba(0,0,0,0.75);
+ padding:30px;
+ border-radius:20px;
+ border:1px solid rgba(249, 243, 243, 0.2);
+ box-shadow:0 0 30px rgba(230, 219, 219, 0.6);
+}
+.container h1{
+ text-align:center;
+ margin-bottom:15px;
+ color:#ff3c00;
+}
+form label{
+ display:block;
+ margin-top:12px;
+ font-weight:600;
+}
+input{
+ width:100%;
+ padding:10px;
+ border-radius:8px;
+ border:none;
+ outline:none;
+ margin-top:6px;
+}
+.h-alter{
+    color: white !important;;
+    text-align:center;
+    font-weight:bold;
+    font-size:12px;
+    margin-top:10px;
+}
+.h-alter,a{
+ color:red;
+}
+button{
+ margin-top:18px;
+ width:100%;
+ padding:12px;
+ border-radius:10px;
+ border:none;
+ background:#ff3c00;
+ color:white;
+ font-size:16px;
+ font-weight:700;
+ cursor:pointer;
+}
+@media(max-width:600px){
+.container{padding:22px}
+}
+</style>
+</head>
+<body>
+<div class="overlay"></div>
+<div class="container">
+<h1>Login</h1>
+<form id="loginform">
+<label for="name">Name</label>
+<input id="name" value="" type="text" name="name" placeholder="Enter Name">
+
+<label for="password">Password</label>
+<input id="password" value="" name="password" minlength="6" type="password" placeholder="Enter Password">
+<div><h1 class="h-alter">Don't have an account click here <a href="/register">Register</a></h1></div>
+<div id="response"></div>
+<button type="submit">Login Now</button>
+</form>
+</div>
+
+<script>
+    document.getElementById("loginform").addEventListener("submit",async(event)=>{
+        event.preventDefault();
+
+        const name=document.getElementById("name").value;
+        const password=document.getElementById("password").value;
+        const responsemsg=document.getElementById("response");
+
+       
+            const response = await fetch("/login",{
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({name,password})
+        })
+
+        if(response.ok){
+            const data= await response.json();
+            localStorage.setItem("jwttoken",data.jwtToken);
+            responsemsg.innerText=`LOGIN SUCSESS`;
+            setTimeout(()=>{
+                window.location.href="/welcome";
+            })
+        }else{
+            const errordata= await response.text();
+            responsemsg.textContent=`${errordata}`;
+        }
+        
+        
+
+    })
+</script>
+</body>
+</html>

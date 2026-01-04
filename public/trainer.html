@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIT ZONE - Trainers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:#000 url('https://images.unsplash.com/photo-1549060279-7e168fcee0c2') center/cover fixed;color:white}
+
+/* NAV */
+header{width:100%;position:fixed;top:0;left:0;z-index:1000;background:rgba(0,0,0,0.75);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.2)}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:18px 60px}
+.logo{font-size:28px;font-weight:800}.logo span{color:#ff3c00}
+.nav-links a{color:white;margin-left:20px;padding:8px 18px;text-decoration:none;border-radius:20px;border:1px solid rgba(255,255,255,0.3);transition:0.4s}
+.nav-links a:hover{background:#ff3c00;border-color:#ff3c00}
+
+/* MAIN */
+.main{margin-top:130px;padding:40px 60px;background:rgba(0,0,0,0.7)}
+.title{text-align:center;font-size:36px;font-weight:800;margin-bottom:20px;color:#ff3c00}
+.sub{max-width:900px;margin-inline:auto;text-align:center;color:#ccc;margin-bottom:30px}
+
+/* TRAINER CARDS */
+.trainer-section{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+.card{background:rgba(0,0,0,0.8);border-radius:15px;border:1px solid rgba(255,255,255,0.2);padding:18px;text-align:center;box-shadow:0 0 25px rgba(255,60,0,0.3)}
+.card img{width:100%;height:230px;object-fit:cover;border-radius:10px}
+.card h2{margin-top:8px;color:#ff3c00}
+.card p{color:#ccc;font-size:14px;margin:4px 0}
+.badge{background:#ff3c00;padding:4px 10px;border-radius:20px;font-size:12px;margin-top:4px;display:inline-block}
+
+/* CATEGORY SECTION */
+.category{margin-top:50px}
+.category h2{color:#ff3c00;margin-bottom:10px}
+.category p{color:#ccc;margin-bottom:15px}
+.cat-trainers{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px}
+.cat-box{text-align:center;background:rgba(0,0,0,0.8);padding:15px;border-radius:12px;border:1px solid rgba(255,255,255,0.2)}
+.cat-box img{width:100%;height:180px;border-radius:10px;object-fit:cover}
+.cat-box h4{margin-top:6px}
+.cat-box small{color:#ff3c00}
+
+/* TOP TRAINER SECTION */
+.highlight{margin-top:60px}
+.highlight h2{color:#ff3c00;margin-bottom:10px}
+.highlight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.highlight-box{background:rgba(0,0,0,0.8);padding:15px;border-radius:12px;border:1px solid rgba(255,255,255,0.2);text-align:center}
+.highlight-box img{width:100%;height:200px;border-radius:10px;object-fit:cover}
+.highlight-box h4{margin-top:6px}
+
+/* APPLY FORM */
+.apply{margin-top:60px;max-width:750px;margin-inline:auto;background:rgba(0,0,0,0.7);padding:30px;border-radius:20px;border:1px solid rgba(255,255,255,0.2);box-shadow:0 0 25px rgba(255,60,0,0.3)}
+.apply h2{text-align:center;color:#ff3c00;margin-bottom:10px}
+.apply p{text-align:center;color:#ccc;margin-bottom:20px}
+label{display:block;margin-top:10px;font-weight:600}
+input{width:100%;padding:10px;border-radius:8px;border:none;margin-top:5px}
+button{margin-top:15px;width:100%;padding:12px;border-radius:10px;border:none;background:#ff3c00;color:white;font-size:16px;font-weight:700;cursor:pointer}
+
+/* FOOTER */
+footer{margin-top:40px;background:#050505;padding:60px 50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px}
+footer h3{margin-bottom:10px;color:#ff3c00}footer p{line-height:1.8;color:#ccc}footer ul{list-style:none}footer li{margin-top:8px}footer a{color:#ccc;text-decoration:none;transition:0.3s}footer a:hover{color:#ff3c00}
+.socials i{font-size:28px;margin-right:15px;cursor:pointer;transition:0.4s}
+.socials i:hover{transform:scale(1.2);color:#ff3c00}
+iframe{width:100%;border-radius:10px;height:200px;border:none}
+
+@media(max-width:900px){.main{padding:25px}}
+@media(max-width:600px){.navbar{padding:15px}.nav-links a{margin-left:10px;padding:6px 12px}.logo{font-size:22px}}
+</style>
+</head>
+<body>
+<header>
+<div class="navbar">
+<div class="logo">FIT <span>ZONE</span></div>
+<div class="nav-links">
+<a href="/plan">Plans</a>
+<a href="/trainer">Trainer</a>
+<a href="/quire">Queries</a>
+<a href="/login" onclick="logout()">Logout</a>
+</div>
+</div>
+</header>
+
+<div class="main">
+<h1 class="title">Meet Our Professional Trainers</h1>
+<p class="sub">Certified, experienced and passionate fitness trainers ready to guide your transformation journey.</p>
+
+<div class="trainer-section">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74">
+<h2>Rahul Verma</h2>
+<p>Personal Trainer</p>
+<p>Experience: 7 Years</p>
+<p>Certification: ACE Certified</p>
+<p>Specialization: Weight Loss, Transformation</p>
+<p>Rating ⭐⭐⭐⭐⭐</p>
+<span class="badge">Available</span>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b">
+<h2>Neha Sharma</h2>
+<p>Strength Coach</p>
+<p>Experience: 5 Years</p>
+<p>Certification: Gold Gym Certified</p>
+<p>Specialization: Strength & Conditioning</p>
+<p>Rating ⭐⭐⭐⭐⭐</p>
+<span class="badge">Limited Slots</span>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438">
+<h2>Amit Singh</h2>
+<p>Crossfit Trainer</p>
+<p>Experience: 6 Years</p>
+<p>Certification: Crossfit Level-2</p>
+<p>Specialization: Power & Agility</p>
+<p>Rating ⭐⭐⭐⭐⭐</p>
+<span class="badge">Available</span>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1">
+<h2>Pooja Patel</h2>
+<p>Yoga Trainer</p>
+<p>Experience: 8 Years</p>
+<p>Certification: RYT 500</p>
+<p>Specialization: Yoga & Flexibility</p>
+<p>Rating ⭐⭐⭐⭐⭐</p>
+<span class="badge">Morning Slots</span>
+</div>
+</div>
+
+<div class="category">
+<h2>Trainer Categories</h2>
+<p>Choose the best expert based on your goal.</p>
+<div class="cat-trainers">
+<div class="cat-box"><img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74"><h4>Rahul</h4><small>Weight Loss Specialist</small></div>
+<div class="cat-box"><img src="https://images.unsplash.com/photo-1517665631713-0b2a8a5dcbb0"><h4>Karthik</h4><small>Body Building Coach</small></div>
+<div class="cat-box"><img src="https://images.unsplash.com/photo-1517649763962-0c623066013b"><h4>Simran</h4><small>Crossfit Coach</small></div>
+<div class="cat-box"><img src="https://images.unsplash.com/photo-1526401485004-2aa7f3b08b0c"><h4>Ananya</h4><small>Zumba Trainer</small></div>
+<div class="cat-box"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773"><h4>Ravi</h4><small>Functional Trainer</small></div>
+</div>
+</div>
+
+<div class="highlight">
+<h2>Top Trainers</h2>
+<p>Most Trusted & Highly Rated Trainers</p>
+<div class="highlight-grid">
+<div class="highlight-box"><img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74"><h4>Top Rated Trainer - Rahul</h4></div>
+<div class="highlight-box"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b"><h4>Most Loved Trainer - Neha</h4></div>
+<div class="highlight-box"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438"><h4>Transformation Expert - Amit</h4></div>
+<div class="highlight-box"><img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1"><h4>Featured Trainer of the Month - Pooja</h4></div>
+</div>
+</div>
+
+<div class="apply">
+<h2>Are You An Experienced Trainer?</h2>
+<p>Join our strong fitness family and inspire hundreds of people.</p>
+<form id="trainerform">
+<label for="name">Name</label>
+<input id="name" name="name" value="" type="text">
+<label for="gender">Gender</label>
+<input id="gender" nanme="gender" value="" type="text">
+<label for="age">Age</label>
+<input id="age" name="age" value="" type="number">
+<label for="phone">Phone Number</label>
+<input id="phone" name="phone" value="" type="tel">
+<label for="location">Location</label>
+<input id="location" name="location" value="" type="text">
+<div id="responsemsg"></div>
+<button type="submit">Apply Now</button>
+</form>
+</div>
+
+</div>
+
+<footer>
+<div>
+<h3>About FIT ZONE</h3>
+<p>We are one of the most advanced fitness centers offering professional training, modern equipment, personal guidance and safe workout space.</p>
+</div>
+<div>
+<h3>Quick Links</h3>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">Plans</a></li>
+<li><a href="#">Trainers</a></li>
+<li><a href="#">Membership</a></li>
+</ul>
+</div>
+<div>
+<h3>Follow Us</h3>
+<div class="socials">
+<i class="fab fa-facebook"></i>
+<i class="fab fa-instagram"></i>
+<i class="fab fa-whatsapp"></i>
+<i class="fab fa-youtube"></i>
+</div>
+</div>
+<div>
+<h3>Location</h3>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.143243081996!2d77.998!3d11.013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDAwJzQ3LjAiTiA3N8KwNTknNTIuMCJF!5e0!3m2!1sen!2sin!4v000000000"></iframe>
+</div>
+</footer>
+
+<script>
+
+    const form = document.getElementById("trainerform");
+
+        form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const name=document.getElementById("name").value;
+        const gender=document.getElementById("gender").value;
+        const age=document.getElementById("age").value;
+        const phone=document.getElementById("phone").value;
+        const location=document.getElementById("location").value;
+        const responsemsg=document.getElementById("responsemsg");
+
+
+        const response= await fetch("/trainer/",{
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({name,gender,age,phone,location})
+        })
+
+        if(response.ok){
+            const data= await response.text();
+            responsemsg.textContent="YOU're applied for trainer"
+            
+        form.reset();
+        }else{
+            const error= await response.text();
+            responsemsg.textContent=`${error} please try diffrent name`
+        }
+
+    })
+
+
+    const token=localStorage.getItem("jwttoken");
+
+    if(!token){
+        alert("please login in")
+        window.location.href="/login";
+    }
+    fetch("/protextedtrainer",{
+        headers:{
+            "Authorization": "Bearer " + token
+        }
+    })
+    .then(res=>{
+        if(res.ok){
+            console.log("permission granted")
+        }
+    })
+    .catch(()=>{
+        alert("server error");
+    })
+  
+    function logout(){
+        localStorage.removeItem("jwttoken")
+    }
+</script>
+</body>
+</html>

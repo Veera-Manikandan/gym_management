@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIT ZONE - Register</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{
+ background:#000 url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438') center/cover fixed;
+ color:white;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ height:100vh;
+}
+.overlay{
+ background:rgba(0,0,0,0.7);
+ position:fixed;
+ inset:0;
+ box-shadow:0 0 70px rgba(240, 232, 232, 0.6) inset;
+}
+.container{
+ position:relative;
+ z-index:10;
+ max-width:450px;
+ width:90%;
+ background:rgba(0,0,0,0.7);
+ padding:30px;
+ border-radius:20px;
+ border:1px solid rgba(255,255,255,0.2);
+ box-shadow:0 0 30px rgba(255,0,0,0.6);
+}
+.container h1{
+ text-align:center;
+ margin-bottom:15px;
+ color:#ff3c00;
+}
+form label{
+ display:block;
+ margin-top:12px;
+ font-weight:600;
+}
+input{
+ width:100%;
+ padding:10px;
+ border-radius:8px;
+ border:none;
+ outline:none;
+ margin-top:6px;
+}
+.radio{
+ display:flex;
+ gap:10px;
+ margin-top:6px;
+}
+button{
+ margin-top:18px;
+ width:100%;
+ padding:12px;
+ border-radius:10px;
+ border:none;
+ background:#ff3c00;
+ color:white;
+ font-size:16px;
+ font-weight:700;
+ cursor:pointer;
+}
+@media(max-width:600px){
+.container{padding:20px}
+}
+</style>
+</head>
+<body>
+<div class="overlay"></div>
+<div class="container">
+<h1>Register </h1>
+<form id="registerform">
+<label for="name">Name</label>
+<input id="name" value="" type="text" name="name" placeholder="Enter Name" required>
+
+<label for="pass">Password</label>
+<input id="pass" value="" type="password" name="pass" minlength="6" placeholder="Enter Password" required>
+
+<label for="age">Age</label>
+<input id="age" value="" type="number" name="age" placeholder="Enter Age" required>
+
+<label>Gender</label>
+<div class="radio">
+<label for="male"><input id="male" value="male" type="radio" name="gender" required> Male</label>
+<label for="female"><input id="female" value="female" type="radio" name="gender" required> Female</label>
+<label for="other"><input id="other" value="other" type="radio" name="gender" required> Other</label>
+</div>
+
+<label for="phone">Phone Number</label>
+<input id="phone" value="" type="tel" name="phone" placeholder="Enter Phone Number" required>
+
+<label for="location">Location</label>
+<input id="location" value="" type="text" name="location"  placeholder="Enter Location" required>
+<div id="response"></div>
+<button type="submit">Register Now</button>
+</form>
+</div>
+
+<script>
+    document.getElementById("registerform").addEventListener("submit",async(event)=>{
+        event.preventDefault();
+
+        const name= document.getElementById("name").value;
+        const pass=document.getElementById("pass").value;
+        const  age=document.getElementById("age").value;
+        const gender=document.querySelector('input[name="gender"]:checked').value;
+        const phone=document.getElementById("phone").value;
+        const location=document.getElementById("location").value;
+        const responsemsg=document.getElementById("response")
+
+        try{
+
+            const response= await fetch("/users/",{
+                method:"POST",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({name,pass,age,gender,phone,location})
+            })
+
+            if(response.ok){
+                const data = await response.text();
+                responsemsg.innerText=`REGISTER SUCCESS`;
+                setTimeout(()=>{
+                    window.location.href="/welcome";
+                },1500)
+                
+            }else{
+                const errormsg = await response.text();
+                responsemsg.innerText=`${errormsg} PLEASE TRY DIFFRENT NAME`;
+            }
+        }catch(e){
+            responsemsg.innerText=`${e.message}`;
+
+        }
+    })
+</script>
+</body>
+</html>

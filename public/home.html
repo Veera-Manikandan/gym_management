@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FIT ZONE - Gym Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins, sans-serif}
+body{
+ background:#020202; /* pure dark black look */
+ color:white;
+ overflow-x:hidden;
+}
+/* NAVBAR */
+header{
+ width:100%;
+ position:fixed;
+ top:0;
+ left:0;
+ z-index:1000;
+ backdrop-filter: blur(10px);
+ background: rgba(0,0,0,0.6);
+ border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.navbar{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:18px 60px;
+}
+.logo{
+ font-size:28px;
+ font-weight:800;
+ letter-spacing:1px;
+ animation: slideIn 1s ease forwards;
+}
+.logo span{
+ color:#ff3c00;
+}
+.nav-links a{
+ margin-left:18px;
+ text-decoration:none;
+ color:white;
+ font-weight:600;
+ padding:8px 16px;
+ border-radius:20px;
+ backdrop-filter:blur(10px);
+ transition:0.4s;
+ border:1px solid rgba(255,255,255,0.2);
+}
+.nav-links a:hover{
+ background:#ff3c00;
+ border-color:#ff3c00;
+}
+/* ---- CENTER CAROUSEL ---- */
+.carousel-container{
+ margin-top:110px;
+ width:80%;
+ height:80vh;
+ margin-inline:auto;
+ border-radius:20px;
+ overflow:hidden;
+ position:relative;
+ border:2px solid rgba(255,255,255,0.2);
+ box-shadow:0 0 30px rgba(255,60,0,0.2);
+}
+.carousel{
+ width:100%;
+ height:100%;
+ position:relative;
+}
+.slide{
+ width:100%;
+ height:100%;
+ display:none;
+}
+.slide img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ filter:brightness(0.8);
+}
+.active{display:block;}
+/* CAROUSEL CONTROLS */
+.prev,.next{
+ position:absolute;
+ top:50%;
+ transform:translateY(-50%);
+ color:white;
+ font-size:40px;
+ background:rgba(0,0,0,0.5);
+ padding:8px 15px;
+ border-radius:50%;
+ cursor:pointer;
+ transition:0.3s;
+}
+.prev:hover,.next:hover{background:#ff3c00;}
+.prev{left:15px;}
+.next{right:15px;}
+/* HERO TEXT */
+.hero-text{
+ position:absolute;
+ bottom:30px;
+ width:100%;
+ text-align:center;
+ animation:fadeIn 2s ease;
+}
+.hero-text h1{font-size:48px;font-weight:800}
+.hero-text p{font-size:18px;margin-top:8px}
+
+@keyframes fadeIn{from{opacity:0; transform:translateY(20px);}to{opacity:1; transform:translateY(0);}}
+@keyframes slideIn{from{transform:translateX(-50px); opacity:0}to{transform:translateX(0); opacity:1}}
+
+/* FOOTER */
+footer{
+ margin-top:30px;
+ background:#050505;
+ padding:60px 50px;
+ display:grid;
+ grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+ gap:40px;
+}
+footer h3{margin-bottom:10px;color:#ff3c00}
+footer p{line-height:1.8;color:#ccc}
+footer ul{list-style:none}
+footer li{margin-top:8px}
+footer a{color:#ccc;text-decoration:none;transition:0.3s}
+footer a:hover{color:#ff3c00}
+.socials i{
+ font-size:28px;
+ margin-right:15px;
+ cursor:pointer;
+ transition:0.4s;
+}
+.socials i:hover{
+ transform:scale(1.2);
+ color:#ff3c00;
+}
+iframe{
+ width:100%;
+ border-radius:10px;
+ height:200px;
+ border:none;
+}
+/* RESPONSIVE */
+@media(max-width:768px){
+.navbar{padding:20px}
+.carousel-container{width:95%;height:60vh}
+.hero-text h1{font-size:26px}
+.hero-text p{font-size:14px}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="navbar">
+<div class="logo">FIT <span>ZONE</span></div>
+<div class="nav-links">
+<a href="/login">Login</a>
+<a href="/register">Register</a>
+</div>
+</div>
+</header>
+
+<section class="carousel-container">
+<div class="carousel">
+<div class="slide active"><img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b74"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1517649763962-0c623066013b"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba"></div>
+<div class="hero-text">
+<h1>TRANSFORM YOUR BODY</h1>
+<p>Premium Gym With Professional Trainers & Futuristic Equipment</p>
+</div>
+<span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+<span class="next" onclick="changeSlide(1)">&#10095;</span>
+</div>
+</section>
+
+<footer>
+<div>
+<h3>About FIT ZONE</h3>
+<p>We are one of the most advanced fitness centers offering professional training, modern equipment, personal guidance and safe workout space.</p>
+</div>
+<div>
+<h3>Quick Links</h3>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="/login">Plans</a></li>
+<li><a href="/login">Trainers</a></li>
+<li><a href="/login">Membership</a></li>
+</ul>
+</div>
+<div>
+<h3>Follow Us</h3>
+<div class="socials">
+<i class="fab fa-facebook"></i>
+<i class="fab fa-instagram"></i>
+<i class="fab fa-whatsapp"></i>
+<i class="fab fa-youtube"></i>
+</div>
+</div>
+<div>
+<h3>Location</h3>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.143243081996!2d77.998!3d11.013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDAwJzQ3LjAiTiA3N8KwNTknNTIuMCJF!5e0!3m2!1sen!2sin!4v000000000"></iframe>
+</div>
+</footer>
+
+<script>
+let index = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(i){
+ slides.forEach(s => s.classList.remove('active'));
+ if(i >= slides.length) index = 0;
+ if(i < 0) index = slides.length - 1;
+ slides[index].classList.add('active');
+}
+
+function changeSlide(step){
+ index += step;
+ showSlide(index);
+}
+
+setInterval(()=>{index++;showSlide(index)},5000);
+</script>
+
+</body>
+</html>
